@@ -2,7 +2,7 @@
 title: 'wyunfei blog'
 description: '昵称云飞，后端开发者，热爱技术&设计。很高兴能在这里与你分享我对技术和生活的思考。'
 keyword: '王增烽, 王增烽的博客, 后端, 后端开发, 后端博客, java, Springboot, Spring, Spring cloud'
-url: 'http://liaokeyu.com' # your host
+url: 'https://wyunfei.github.io/' # your host
 
 # if you don't need baseurl, you should leave this value blank.
 baseurl: ''
@@ -14,7 +14,7 @@ nav:
 
 # Footer
 footer:
-  since: 2017
+  since: 2018
 
 # Author 配置博主信息
 author: '王增烽'
@@ -49,10 +49,8 @@ postPatterns: 'circuitBoard'
 # SNS settings 配置社交网站
 # url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
 sns:
-  weibo: '//weibo.com/lovecolcol'
-  juejin: '//juejin.im/user/57a6f434165abd006159b4cc'
-  instagram: '//www.instagram.com/steveliaocn'
-  github: '//github.com/kaeyleo'
+  jianshu: '//www.jianshu.com/u/cdc7fe2d3cc1'
+  csdn: '//blog.csdn.net/yunfei1992'
 
 # Tags 设置标签
 recommend-tags: true # whether or not display recommend-tags on the sidebar
