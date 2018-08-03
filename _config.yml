@@ -1,7 +1,7 @@
 # Site settings 配置站点
 title: 'wyunfei blog'
 description: '昵称云飞，后端开发者，热爱技术&设计。很高兴能在这里与你分享我对技术和生活的思考。'
-keyword: '王增烽, 王增烽的博客, 后端, 后端开发, 后端博客, java, Springboot, Spring, Spring cloud'
+keyword: '王增烽, 王增烽的博客, 后端, 后端开发, 后端博客, java, SpringBoot, Spring, SpringCloud,docker,elk'
 url: 'https://wyunfei.github.io/' # your host
 
 # if you don't need baseurl, you should leave this value blank.

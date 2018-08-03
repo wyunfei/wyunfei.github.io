@@ -3,8 +3,7 @@ layout: post
 title: 'SpringBoot 发送logback日志到elk'
 date: 2018-08-03
 author: yunfei
-cover: '/assets/img/springboot.png'
-tags: SpringBoot,elk
+tags: SpringBoot elk
 ---
 
 ### 1. 引入依赖
