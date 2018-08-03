@@ -50,7 +50,7 @@ postPatterns: 'circuitBoard'
 # url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
 sns:
   jianshu: '//www.jianshu.com/u/cdc7fe2d3cc1'
-  csdn: '//blog.csdn.net/yunfei1992'
+  uicn: '//blog.csdn.net/yunfei1992'
 
 # Tags 设置标签
 recommend-tags: true # whether or not display recommend-tags on the sidebar
