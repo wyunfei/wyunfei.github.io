@@ -8,7 +8,7 @@ tags: SpringBoot Maven
 
 ### 1、maven pom.xml配置
 
-####（1）添加profires
+#### （1）添加profires
 ````xml
 <profiles>
    <!--开发环境-->
@@ -38,7 +38,7 @@ tags: SpringBoot Maven
 </profiles>
 ````
 
-####（2）在build下添加resource
+#### （2）在build下添加resource
 
 ````xml
 <resources>
@@ -58,7 +58,7 @@ tags: SpringBoot Maven
 </resources>
 ````
 
-####（3）在plugins里添加配置，允许使用${}获取maven变量值
+#### （3）在plugins里添加配置，允许使用${}获取maven变量值
 
 ````xml
 <plugin>
