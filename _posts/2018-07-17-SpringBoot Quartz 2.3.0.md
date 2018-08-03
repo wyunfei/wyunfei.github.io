@@ -149,7 +149,8 @@ public class SchedulerJob implements Job {
 ````
 ### 5、使用例子
 ````java
-  public class JobTest{
+  @Service
+  public class JobServiceImpl implements JobService {
     @Autowired
     @Qualifier("Scheduler")
     private Scheduler scheduler;
