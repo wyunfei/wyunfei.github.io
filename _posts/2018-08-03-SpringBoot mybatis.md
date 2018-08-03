@@ -188,9 +188,11 @@ pagehelper.params=count=countSql
  
 ### 5、mybatis 插入返回id
 可以在id上加注解
+````java
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SELECT LAST_INSERT_ID()")
 private Long id;
+````
 
 也可以用mybatis封装好的方法：
 insertUseGeneratedKeys
