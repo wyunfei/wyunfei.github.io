@@ -3,12 +3,12 @@ name: blog
 email: yunfei614514@gmail.com
 author: wangzengfeng
 url: https://wyunfei.github.io/
-resume_site: http://www.500d.me/cvresume/6274046536/
-github: 
+#resume_site: http://www.500d.me/cvresume/6274046536/
+#github: 
 baseurl: "/"
 description: Actually, less is more!
 meta_description: 王增烽;个人博客;
-motto: It's our wits that make us men.
+#motto: It's our wits that make us men.
 banner: 学而不思则罔，思而不学则殆。
 
 #permalink: /:categories/:year/:month/:day/:title/
@@ -22,5 +22,5 @@ github_username: wuyunfei
 # Build settings
 markdown: kramdown
 
-baidu_analysis: 94be4b0f9fc5d94cc0d0415ea6761ae9
+#baidu_analysis: 94be4b0f9fc5d94cc0d0415ea6761ae9
 
