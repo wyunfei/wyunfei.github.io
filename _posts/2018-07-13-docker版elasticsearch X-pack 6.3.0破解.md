@@ -11,7 +11,7 @@ tags: docker
 从elasticsearch docker容器里复制x-pack-core-6.3.0.jar到宿主机
 ```text
 docker cp
-2e4a9082e64f:/usr/share/elasticsearch/modules/x-pack/x-pack-core/x-pack-core-6.3.0.jar/docker/elasticsearch/
+2e4a9082e64f:/usr/share/elasticsearch/modules/x-pack/x-pack-core/x-pack-core-6.3.0.jar /docker/elasticsearch/
 ```
 
 说明：
