@@ -164,8 +164,10 @@ PUT /test
 
 2、查看索引：
 http://192.xx.xx.xx:9200/_cat/indices?v
+
 3、删除索引：
 curl -XDELETE http://localhost:9200/my_index?pretty
+
 4、导入模板到elasticsearch：
 ```text
 curl -XPUT -H 'Content-Type:application/json' http://localhost:9200/_template/filebeat-7.0.0-alpha1 -d@filebeat-index-template.json
@@ -179,11 +181,13 @@ Does it try to require a relative path?That's been removed in Ruby 1.9.
 uri:classloader:/META-INF/jruby.home/lib/ruby/stdlib/rubygems/core_ext/kernel_require.rb:59:in`require':
 It seems your ruby installation is missingpsych (for YAML output).
 To eliminate this warning, please installlibyaml and reinstall your ruby.
-[ERROR] 2018-05-31 02:09:06.151 [main]Logstash - java.lang.IllegalStateException:org.jruby.exceptions.RaiseException: (GemspecError) There was a LoadError whileloading logstash-core.gemspec:
+[ERROR] 2018-05-31 02:09:06.151 [main]Logstash - java.lang.IllegalStateException:org.jruby.exceptions.RaiseException: 
+(GemspecError) There was a LoadError whileloading logstash-core.gemspec:
 load error: psych --java.lang.RuntimeException: BUG: we can not copy embedded jar to temp directory
 </p>
 
 解决方式：
+
 ![image png](/assets/img/handle.png)
 
 文件目录要有写入权限，不能为只读，例如/usr/share/logstash/pipeline/logstash.conf:ro就是只读的
@@ -209,7 +213,8 @@ sysctl -w vm.max_map_count=262144
 
 ### 4.4 Kibana6.x.x—启动后的一些警告信息记录以及解决方法
 1、发现的第一个警告信息
-server  log   [06:55:25.594] [warning][reporting] Generating a random key for xpack.reporting.encryptionKey. 　　　　　　　　　　　　　　　　 To prevent pending reports from failing on restart, please set xpack.reporting.encryptionKey in kibana.yml
+server log [06:55:25.594] [warning][reporting] Generating a random key for xpack.reporting.encryptionKey. To prevent pending reports from failing on restart, please set xpack.reporting.encryptionKey in kibana.yml
+
 根据提示，在配置文件kibana.yml中添加
 >* 【xpack.reporting.encryptionKey】属性：
 >* xpack.reporting.encryptionKey: "a_random_string"
@@ -217,7 +222,8 @@ server  log   [06:55:25.594] [warning][reporting] Generating a random key for xp
 
 
 2、发现的第二个警告信息
-server   log   [06:55:25.686] [warning][security] Generating a random key for xpack.security.encryptionKey. 　　　　　　　　　　　　　　　　　　To prevent sessions from being invalidated on restart, please set xpack.security.encryptionKey in kibana.yml
+server log [06:55:25.686] [warning][security] Generating a random key for xpack.security.encryptionKey. To prevent sessions from being invalidated on restart, please set xpack.security.encryptionKey in kibana.yml
+
 根据提示，在配置文件kibana.yml中添加
 >* 【xpack.security.encryptionKey】属性：
 >* xpack.security.encryptionKey: "something_at_least_32_characters"
