@@ -15,20 +15,20 @@ docker cp
 ```
 
 说明：
-Elasticsearch容器ID：2e4a9082e64f
-x-pack-core-6.3.0.jar容器里位置：
+>* Elasticsearch容器ID：2e4a9082e64f
+>* x-pack-core-6.3.0.jar容器里位置：
 /usr/share/elasticsearch/modules/x-pack/x-pack-core/x-pack-core-6.3.0.jar
-宿主机目录：/docker/elasticsearch/
+>* 宿主机目录：/docker/elasticsearch/
 ![image png](/assets/img/docker1.png)
  
 
 ### 1.2 luyten反编译x-pack-core-6.3.0.jar
-用luyten反编译保存为java文件，找到
+>* 用luyten反编译保存为java文件，找到
 org.elasticsearch.license.LicenseVerifier.class
 org.elasticsearch.xpack.core.XPackBuild.class
 
-luyten项目地址:https://github.com/deathmarine/Luyten
-将反编译后的java 代码复制到自己的IDE中，按照同样的包名创建pack
+>* luyten项目地址:https://github.com/deathmarine/Luyten
+>* 将反编译后的java 代码复制到自己的IDE中，按照同样的包名创建pack
 我们不需要编译整个项目，只需要编译这两个文件，所以要把依赖添加到classpath中。
 依赖也与之前有所变化，之前只需要x-pack 包本身，现在需要引入 elasticsearch 6.3.0 中 lib 目录下的jar包 以及 x-pack-core-6.3.0.jar 本身
 
@@ -100,8 +100,8 @@ curl -u elastic:elastic -XPUT 'http://es-ip:port/_xpack/license' -H "Content-Typ
 ```
 
 ### 1.6 参考链接
-License查看：https://www.elastic.co/subscriptions
-破解教程：
+>* License查看：https://www.elastic.co/subscriptions
+>* 破解教程：
 https://www.jianshu.com/p/55b5c5d3a89c
 http://blog.51cto.com/billy98/2131989
 
