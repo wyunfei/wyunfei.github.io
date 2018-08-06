@@ -78,10 +78,9 @@ public class Swagger2 {
 ```
 
 #### （3）swagger的其他使用方式
-```text
 参考：https://github.com/SpringForAll/spring-boot-starter-swagger
 下载github上面的源码，放到自己工程下面，之后就可以在配置文件里面配置，省去上面的代码配置
-```
+
 ![image png](/assets/img/swagger.png)
 ```yaml
 swagger:
