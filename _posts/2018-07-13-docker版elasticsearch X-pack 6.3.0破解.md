@@ -19,6 +19,7 @@ docker cp
 >* x-pack-core-6.3.0.jar容器里位置：
 /usr/share/elasticsearch/modules/x-pack/x-pack-core/x-pack-core-6.3.0.jar
 >* 宿主机目录：/docker/elasticsearch/
+
 ![image png](/assets/img/docker1.png)
  
 
@@ -26,7 +27,6 @@ docker cp
 >* 用luyten反编译保存为java文件，找到
 org.elasticsearch.license.LicenseVerifier.class
 org.elasticsearch.xpack.core.XPackBuild.class
-
 >* luyten项目地址:https://github.com/deathmarine/Luyten
 >* 将反编译后的java 代码复制到自己的IDE中，按照同样的包名创建pack
 我们不需要编译整个项目，只需要编译这两个文件，所以要把依赖添加到classpath中。
@@ -42,12 +42,14 @@ XPackBuild 中最后一个静态代码块中 try的部分全部删除，这部�
 
 
 ### 1.3 把重新编译后的文件添加到x-pack-core-6.3.0.jar
-右键解压x-pack-core-6.3.0.jar，然后分别替换
-org.elasticsearch.license.LicenseVerifier.class 
-org.elasticsearch.xpack.core.XPackBuild.class
+#### 1、右键解压x-pack-core-6.3.0.jar，然后分别替换
+>* org.elasticsearch.license.LicenseVerifier.class 
+>* org.elasticsearch.xpack.core.XPackBuild.class
+
 ![image png](/assets/img/xpack-core.png)
 
-替换后，重新压缩x-pack-core-6.3.0.jar
+#### 2、替换后，重新压缩x-pack-core-6.3.0.jar
+
 ![image png](/assets/img/xpack-zip.png)
  
 
@@ -61,6 +63,7 @@ docker cp
 ### 1.5 导入授权文件
 #### 1、先从官网申请basic授权文件
 https://license.elastic.co/registration
+
 ![image png](/assets/img/license-basic.png)
 
 
@@ -81,17 +84,21 @@ https://license.elastic.co/registration
 
 时间戳、时间转换
 https://tool.lu/timestamp
+
 ![image png](/assets/img/timesmap.png)
 
 
 #### 3、导入授权文件
 方式一：通过kibana界面导入
+
 ![image png](/assets/img/kibana-license.png)
 
 选择授权文件上传：
+
 ![image png](/assets/img/license-upload.png)
 
 上传成功后：
+
 ![image png](/assets/img/upload-success.png)
 
 方式二：通过API接口上传
