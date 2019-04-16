@@ -66,6 +66,7 @@ markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
+  use_coderay: true
 
 # RSS
 RSS: false
