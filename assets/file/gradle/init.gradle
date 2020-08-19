@@ -1,0 +1,26 @@
+allprojects {
+    repositories {
+        //maven { url 'file:///C:/Java/maven_repository'}
+        //mavenLocal()
+	//https://www.jianshu.com/p/ab1f5e5f5f5c
+	maven { name "Nexus" ; url "http://127.0.0.1:8081/repository/maven-public/" }
+	maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+        maven { name "Alibaba" ; url "https://maven.aliyun.com/repository/public" }
+        maven { name "Bstek" ; url "http://nexus.bsdn.org/content/groups/public/" }
+        mavenCentral()
+    }
+
+    buildscript { 
+        repositories { 
+	    maven { name "Nexus" ; url "http://127.0.0.1:8081/repository/maven-public/" }
+	    maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+            maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+            maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+            maven { name "Alibaba" ; url 'https://maven.aliyun.com/repository/public' }
+            maven { name "Bstek" ; url 'http://nexus.bsdn.org/content/groups/public/' }
+            maven { name "M2" ; url 'https://plugins.gradle.org/m2/' }
+        }
+    }
+}

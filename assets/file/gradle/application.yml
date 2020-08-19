@@ -1,0 +1,119 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: web-demo
+
+#mybatis Timestamp类型时区相差8小时解决
+  jackson:
+     date-format: yyyy-MM-dd HH:mm:ss
+#     jackson.time-zone: GMT+8
+
+  datasource:
+#    filters: stat, wall, log4j
+    druid:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mysql://localhost:3306/data3?characterEncoding=utf8&useSSL=false&autoReconnect=true&autoReconnectForPools=true&serverTimezone=UTC&rewriteBatchedStatements=true
+#      url: jdbc:mysql://localhost:3306/data3?characterEncoding=utf8&useSSL=false&autoReconnect=true&autoReconnectForPools=true&&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+#      url: jdbc:mysql://localhost:3306/data3?characterEncoding=utf8&useSSL=false&autoReconnect=true&autoReconnectForPools=true&&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+      username: root
+      password: root
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 1 from dual
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      filter:
+        stat:
+          merge-sql: true
+          slow-sql-millis: 5000
+          enabled: true
+          db-type: mysql
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: false
+            drop-table-allow: false
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        #IP白名单(没有配置或者为空，则允许所有访问)
+        allow: 127.0.0.1,192.168.0.119
+        #IP黑名单 (存在共同时，deny优先于allow)
+        deny: 192.168.1.73
+        login-username: admin
+        login-password: admin
+        #是否禁用HTML页面上的“Reset All”功能 true 是
+        reset-enable: false
+
+
+#mybatis
+#指定bean所在包
+mybatis:
+  type-aliases-package: com.yunfei.web.demo.entity
+  #指定映射文件
+  mapperLocations: classpath:mapper/*.xml
+  #配置mybatis输出日志 方式一 打印所有日志
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#方式二 打印指定包下日志 trace会打印出数据
+#logging:
+#  level:
+#    com.yunfei.web.demo.mapper: DEBUG
+#  file:
+#   path: E:/logs/web/mybatis
+#   #历史保存天数
+#   max-history: 2
+#   #日志文件大小
+#   max-size: 100MB
+#   # 清理历史文件
+#   clean-history-on-start: true
+
+
+#mapper
+#mappers 多个接口时逗号隔开
+mapper:
+  mappers: com.yunfei.web.demo.config.BaseMapper
+  not-empty: false
+  identity: MYSQL
+#  enum-as-simple-type: true  # 允许bean 接受 enum 类型
+
+#pagehelper
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+
+
+
+#swagger:
+#  title: RESTful APIs
+#  description: API接口文档
+#  version: 1.0
+#  # 生产环境禁用swagger enabled设置为false
+#  enabled: true
+#  docket:
+#    web-mybatis:
+#      base-package: com.yunfei.web.mybatis.controller
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    # 注册中心点击跳转api文档
+#    status-page-url-path: /doc.html
+#  client:
+#    service-url:
+#      defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+#    registry-fetch-interval-seconds: 5 #从eureka服务器注册表中获取注册信息的时间间隔（s），默认为30秒

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--<properties resource="application.yml" />-->
+    <!--<property name="resources" value="classpath:/application.yml"/>-->
+    <!-- <context id="Mysql" targetRuntime="MyBatis3"> -->
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="useMapperCommentGenerator" value="false"/>
+
+        <property name="mybatisVersion" value="4.1.5"/>
+
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter"
+                  value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter"
+                  value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- 为模型生成序列化方法-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <!--为生成的mapper类添加 @Repository 注解-->
+        <!-- Mapper注解插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.MapperAnnotationPlugin">
+            <!-- @Mapper 默认开启 -->
+            <property name="@Mapper" value="false"/>
+            <!-- @Repository 默认关闭，开启后解决IDEA工具@Autowired报错 -->
+            <property name="@Repository" value="true"/>
+        </plugin>
+
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.yunfei.web.demo.config.BaseMapper"/>
+            <!--添加lombok 注解，不生成get、set方法-->
+            <property name="lombok" value="Data"/>
+            <!--添加swagger注解 tk mapper 4.1.5版本只有@ApiModel注解 因此自定义扩展注解-->
+            <!--<property name="swagger" value="true"/>-->
+            <!--是否区分大小写-->
+            <property name="caseSensitive" value="true"/>
+            <!--是否强制生成注解，默认 false，如果设置为 true，不管数据库名和字段名是否一致，都会生成注解（包含 @Table 和 @Column）-->
+            <property name="forceAnnotation" value="true"/>
+            <!--开始和结束分隔符，对于有关键字的情况下适用-->
+            <property name="beginningDelimiter" value="`"/>
+            <property name="endingDelimiter" value="`"/>
+        </plugin>
+
+        <!--自定义注释-->
+        <!--<commentGenerator type="com.yunfei.web.demo.MyCommit">-->
+            <!--&lt;!&ndash; 是否去除自动生成的注释 true：是 ： false:否 &ndash;&gt;-->
+            <!--&lt;!&ndash;<property name="suppressAllComments" value="true" />&ndash;&gt;-->
+            <!--&lt;!&ndash; 是否生成注释代时间戳 &ndash;&gt;-->
+            <!--<property name="suppressDate" value="true"/>-->
+            <!--<property name="author" value="wangzengfeng"/>-->
+            <!--<property name="dateFormat" value="yyyy/MM/dd"/>-->
+        <!--</commentGenerator>-->
+
+        <plugin type="com.itfsw.mybatis.generator.plugins.CommentPlugin">
+            <!-- 自定义模板路径 -->
+            <property name="template" value="src/main/resources/mybatis-generator-comment.ftl" />
+        </plugin>
+
+        <!--数据库链接地址账号密码 旧驱动com.mysql.jdbc.Driver 8.x 新驱动com.mysql.cj.jdbc.Driver-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/data3?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnect=true&amp;
+                        autoReconnectForPools=true&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true"
+                        userId="root" password="root">
+            <!-- 设置 useInformationSchema 属性为 true 获取表注释 -->
+            <property name="useInformationSchema" value="true"/>
+            <!-- 设置为只生成当前数据库的表信息 解决mysql 8.x驱动 schema无效，重复生成表问题-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true
+         时把JDBC DECIMAL 和NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置 -->
+        <javaModelGenerator targetPackage="com.yunfei.web.demo.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 是否针对string类型的字段在set的时候进行trim调用 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置 -->
+        <!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码 type="ANNOTATEDMAPPER",生成Java Model
+            和基于注解的Mapper对象 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象 type="XMLMAPPER",生成SQLMap
+            XML文件和独立的Mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.yunfei.web.demo.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名 domainObjectName="plan" -->
+        <!--		<table tableName="device_master" domainObjectName="DeviceMaster" mapperName="{0}Dao"
+                    enableCountByExample="false" enableUpdateByExample="false"
+                    enableDeleteByExample="false" enableSelectByExample="false"
+                    selectByExampleQueryId="false">
+                 <generatedKey column="id" sqlStatement="Mysql" />
+                </table>-->
+        <table schema="data3" tableName="diff_data" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <!--<ignoreColumn column="createtime" />-->
+            <!--<ignoreColumn column="modifytime" />-->
+        </table>
+
+    </context>
+</generatorConfiguration>

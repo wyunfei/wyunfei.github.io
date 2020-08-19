@@ -1,0 +1,80 @@
+buildscript {
+    ext {
+        //spring boot 版本
+        bootVersion = '2.3.2.RELEASE'
+    }
+
+    //springboot gradle插件配置
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${bootVersion}")
+        // mybatis-generator 插件路径
+//        classpath "gradle.plugin.com.arenagod.gradle:mybatis-generator-plugin:1.4"
+        classpath "gradle.plugin.com.thinkimi.gradle:mybatis-generator-plugin:2.2"
+        // docker
+//        classpath 'gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.22.2'
+//        classpath 'com.bmuschko:gradle-docker-plugin:6.6.1'
+    }
+}
+
+//引入 mybatis-generator 插件
+//apply plugin: "com.arenagod.gradle.MybatisGenerator"
+apply plugin: "com.thinkimi.gradle.MybatisGenerator"
+
+//docker
+//apply plugin: 'com.palantir.docker'
+
+dependencies {
+    implementation project(':yunfei-common-core')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //数据源
+    compile 'com.alibaba:druid-spring-boot-starter:1.1.21',
+            'mysql:mysql-connector-java:8.0.12'
+
+    // lombok
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+//    compileOnly 'org.projectlombok:lombok:1.18.10'
+    compile 'org.projectlombok:lombok:1.18.10'
+//    testCompileOnly 'org.projectlombok:lombok:1.18.10'
+//    testAnnotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+    // 分页
+    compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.2.13'
+
+    // mybatis
+    compile 'tk.mybatis:mapper-spring-boot-starter:2.1.5'
+
+    //逆向工程所需jar
+    mybatisGenerator 'mysql:mysql-connector-java:8.0.12'
+//    mybatisGenerator 'tk.mybatis:mapper-spring-boot-starter:2.1.5'
+    //mybatis-generator core 包
+    mybatisGenerator group: 'org.mybatis.generator', name: 'mybatis-generator-core', version: '1.3.7'
+    // https://github.com/itfsw/mybatis-generator-plugin
+    mybatisGenerator group: 'com.itfsw', name: 'mybatis-generator-plugin', version: '1.3.8'
+    mybatisGenerator group: 'tk.mybatis', name: 'mapper', version: '4.1.5'
+}
+
+configurations {
+    mybatisGenerator
+}
+// mybatis-generator.xml 配置路径
+//这里会遇到个问题：MyBatis Generator 通过xml生成，有日志但是没有生成文件成功的问题， 
+//原因：mac下是找不到 ./src 路径的，需要全路径；windows则为src/main/resources/mybatis-generator.xml
+mybatisGenerator {
+    //允许移动生成的文件
+    verbose = true
+    // 不覆盖
+    overwrite = false
+    configFile = 'src/main/resources/mybatis-generator.xml'
+}
+
+//https://www.jianshu.com/p/7571fa3b394c
+//https://www.cnblogs.com/lori/p/10136269.html
+//docker {
+//    dependsOn build
+//    name "${project.group}/${bootJar.archiveBaseName}"
+////    project.displayName/project.version
+////    files bootJar.archivePath
+//    dockerfile = file('src/main/docker/Dockerfile')
+//    buildArgs(['JAR_FILE': "${bootJar.archiveFileName}"])
+//}
